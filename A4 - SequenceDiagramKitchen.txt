@@ -1,0 +1,31 @@
+@startuml
+
+participant COPS
+participant Kitchen
+participant TextingService
+participant CounterStaff
+actor Customer
+
+COPS -> Kitchen: Send Order
+Kitchen -> Kitchen: Print Ticket
+Kitchen -> Kitchen: Scan Ticket 
+Kitchen -> COPS: Send Ticket State 
+COPS -> TextingService: Send Notification 
+TextingService -> Customer: Notify Customer "Order Started Baking"
+COPS -> COPS: Store for Mgmt Reports 
+Kitchen -> Kitchen: Assemble/Bake Pizza 
+Kitchen -> Kitchen: Scan Ticket
+Kitchen -> COPS: Send Ticket State 
+COPS -> TextingService: Send Notification 
+TextingService -> Customer: Notify Customer "Order Ready for Pickup"
+Kitchen -> CounterStaff: Pass Pizza
+CounterStaff -> CounterStaff: Add Drinks 
+CounterStaff -> CounterStaff: Place Order in Waiting Area 
+Customer -> CounterStaff: Arrive at Kitchen 
+Customer -> CounterStaff: Give Information 
+CounterStaff -> Customer: Give Order
+CounterStaff -> CounterStaff: Scan Ticket 
+CounterStaff -> COPS: Send Ticket State
+COPS -> COPS: Store for Mgmt Reports
+
+@enduml

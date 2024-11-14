@@ -1,0 +1,34 @@
+@startuml
+
+actor Customer
+participant Website
+participant GISLocationService
+participant PaymentService
+participant COPS
+
+Customer -> Website: Press Start Button
+Website -> GISLocationService: Send Location Information
+GISLocationService -> Website: Send Kitchen Locations
+Customer -> Website: Accept Kitchen Location
+Website -> Customer: Show Menu
+Customer -> Website: Add to Basket
+Customer -> Website: Show Basket
+Customer -> Website: Increase Item by 1
+Customer -> Website: Decrease Item by 1
+Customer -> Website: Edit Order
+Website -> Customer: Show Menu
+Customer -> Website: Add to Basket
+Customer -> Website: Show Basket
+Customer -> Website: Checkout
+Website -> Customer: Show Payment Screen
+Customer -> Website: Complete Order
+Website -> PaymentService: Send Payment Details
+PaymentService -> PaymentService: Process Payment
+group Payment Successful
+    PaymentService -> Website: Payment Accepted
+    Website -> Website: Reset Shopping Basket
+    Website -> Customer: Show "Order Acknowledged" Notification
+    Website -> COPS: Send Order
+end 
+
+@enduml

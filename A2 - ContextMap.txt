@@ -1,0 +1,17 @@
+ContextMap PizzaOrderingSystem {
+	contains Website
+	contains GISLocationService
+	contains PaymentService
+	contains TextingService
+	contains COPS
+	contains Kitchen
+	contains CounterStaff
+
+	Website [ACL] <-> GISLocationService
+	Website [CF] <-> PaymentService
+	Website [CF] -> COPS
+	COPS [C] -> [S] TextingService
+	Kitchen [CF] -> COPS
+	Kitchen [SK] -> [SK] CounterStaff
+	CounterStaff [CF] -> COPS
+}

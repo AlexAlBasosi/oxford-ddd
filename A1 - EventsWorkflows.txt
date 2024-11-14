@@ -1,0 +1,41 @@
+Domain: Website
+    StartButtonPressed triggers FindKitchens outputs KitchenLocationsSent
+    KitchenLocationAccepted triggers ShowMenu outputs MenuShown
+    MenuShown triggers AddToBasket outputs AddedToBasket
+    AddedToBasket triggers (ShowMenu outputs MenuShown) OR (ShowBasket outputs BasketShown)
+    BasketShown triggers (EditOrder outputs MenuShown) OR (DecreaseItemBy1 outputs ItemDecreasedBy1 OR ItemRemovedFromBasket) OR IncreaseItemBy1 outputs ItemIncreasedBy1 OR Checkout outputs PaymentScreenOpened
+    ShoppingBasketReset
+    NotificationSent
+
+Domain: GISLocationService
+    KitchenLocationsSent triggers AcceptKitchenLocation outputs KitchenLocationAccepted
+
+Domain: PaymentService
+    PaymentScreenOpened triggers CompleteOrder outputs PaymentAccepted OR PaymentDeclined
+    PaymentAccepted triggers (ResetShoppingBasket outputs ShoppingBasketReset) AND (ShowOrderAcknowledgedNotification outputs NotificationSent) AND (SendOrderToCOPS outputs OrderSent)
+    PaymentDeclined triggers ShowPaymentFailedScreen outputs PaymentScreenOpened
+
+Domain: TextingService
+    CustomerNotifiedOrderStartedBaking 
+    CustomerNotifiedOrderReadyForPickup
+
+
+Domain: COPS
+    OrderSent triggers PrintTicket outputs TicketPrinted
+    NotificationSent triggers NotifyCustomer outputs CustomerNotifiedOrderStartedBaking
+    TicketStateStored
+    NotificationSent triggers NotifyCustomer outputs CustomerNotifiedOrderReadyForPickup
+    TicketStateStored
+
+Domain: Kitchen
+    TicketPrinted triggers ScanTicket outputs TicketScanned
+    TicketScanned triggers AssembleAndBakePizza outputs PizzaBaked
+    TicketStateSentToCops triggers (SendNotificationToTextingService outputs NotificationSent) AND (StoreForMgmtReports outputs TicketStateStored)
+    PizzaBaked triggers ScanTicket outputs TicketStateSentToCOPS AND PassedToCounterStaff
+    TicketStateSentToCOPS triggers SendNotificationToTextingService outputs NotificationSent
+    PassedToCounterStaff triggers AddDrinks outputs DrinksAdded
+
+Domain: CounterStaff
+    DrinksAdded triggers PlaceOrderInWaitingArea outputs CustomerArrived
+    CustomerArrived triggers ScanTicket outputs TicketStateSentToCOPS
+    TicketStateSentToCOPS triggers StoreForMgmtReports outputs TicketStateStored
