@@ -1,4 +1,4 @@
-#load "B3_Menu.fsx"
+#load "../PartB/B3_Menu.fsx"
 #load "C1_ConstrainedTypes.fsx"
 
 module ShoppingBasket =

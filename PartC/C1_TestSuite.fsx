@@ -1,6 +1,6 @@
 #load "C1_ShoppingBasket.fsx"
 #load "C1_ConstrainedTypes.fsx"
-#load "B3_Menu.fsx"
+#load "../PartB/B3_Menu.fsx"
 #load "C1_BasketImplementation.fsx"
 
 module TestSuite =

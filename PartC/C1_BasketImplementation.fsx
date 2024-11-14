@@ -1,5 +1,5 @@
 #load "C1_ShoppingBasket.fsx"
-#load "B7_Order.fsx"
+#load "../PartB/B7_Order.fsx"
 
 module BasketImplementation =
     open C1_ShoppingBasket.ShoppingBasket
