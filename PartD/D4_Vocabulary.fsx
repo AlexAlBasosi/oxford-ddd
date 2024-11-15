@@ -7,26 +7,39 @@ module Vocabulary =
     open D2_Ingredient.Ingredient
     open D3_Recipe.Recipe
 
+    type Take = IngredientAmount -> UnitMeasure -> IngredientName -> Ingredient
+    type Grab = IngredientAmount -> IngredientName -> Ingredient
     type Combine = StepComment -> Ingredient list -> RecipeStep
-    type ThenAdd = StepComment -> Ingredient list -> RecipeStep
+    type ThenAdd = StepComment option -> Ingredient list -> RecipeStep
     type ThenDo = StepComment -> RecipeStep
     type BakeAt = Temperature -> UnitTemperature -> RecipeStep
     type BeatFor = TimeDuration -> UnitTime -> RecipeStep
     type CookFor = TimeDuration -> UnitTime -> RecipeStep
 
+    let take: Take =
+        fun (amount: IngredientAmount) (unit: UnitMeasure) (name: IngredientName) -> Stuff(amount, unit, name)
+
+    let grab: Grab =
+        fun (amount: IngredientAmount) (name: IngredientName) -> Thing(amount, name)
+
     let combine: Combine =
         fun (comment: StepComment) (ingredientList: Ingredient list) ->
             let addIngredientsData: AddIngredientsData =
                 { Ingredients = ingredientList
-                  Comment = comment }
+                  Comment = Some comment }
 
             AddIngredients addIngredientsData
 
     let thenAdd: ThenAdd =
-        fun (comment: StepComment) (ingredientList: Ingredient list) ->
+        fun (comment: StepComment option) (ingredientList: Ingredient list) ->
             let addIngredientsData: AddIngredientsData =
-                { Ingredients = ingredientList
-                  Comment = comment }
+                match comment with
+                | Some comment ->
+                    { Ingredients = ingredientList
+                      Comment = Some comment }
+                | None ->
+                    { Ingredients = ingredientList
+                      Comment = None }
 
             AddIngredients addIngredientsData
 

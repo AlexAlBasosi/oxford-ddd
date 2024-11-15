@@ -7,7 +7,7 @@ module Recipe =
 
     type AddIngredientsData =
         { Ingredients: Ingredient list
-          Comment: StepComment }
+          Comment: StepComment option }
 
     type OvenData =
         { Temperature: Temperature
