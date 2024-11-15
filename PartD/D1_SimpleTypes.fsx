@@ -8,30 +8,30 @@ module SimpleTypes =
     type TeaspoonString = string
     type TablespoonString = string
 
-    type UnitMeasureStrings =
+    type UnitMeasureData =
         { GramString: GramString
           MilliliterString: MilliliterString
           TeaspoonString: TeaspoonString
           TablespoonString: TablespoonString }
 
     type UnitMeasure =
-        | Gram of UnitMeasureStrings
-        | Milliliter of UnitMeasureStrings
-        | Teaspoon of UnitMeasureStrings
-        | Tablespoon of UnitMeasureStrings
+        | Gram of UnitMeasureData
+        | Milliliter of UnitMeasureData
+        | Teaspoon of UnitMeasureData
+        | Tablespoon of UnitMeasureData
 
     type StepComment = string
 
     type CelsiusString = string
     type FahrenheitString = string
 
-    type UnitTemperatureStrings =
+    type UnitTemperatureData =
         { CelsiusString: CelsiusString
           FahrenheitString: FahrenheitString }
 
     type UnitTemperature =
-        | Celsius of UnitTemperatureStrings
-        | Fahrenheit of UnitTemperatureStrings
+        | Celsius of UnitTemperatureData
+        | Fahrenheit of UnitTemperatureData
 
     type Temperature = string
     type TimeDuration = string
@@ -39,10 +39,10 @@ module SimpleTypes =
     type MinuteString = string
     type HourString = string
 
-    type UnitTimeStrings =
+    type UnitTimeData =
         { MinuteString: MinuteString
           HourString: HourString }
 
     type UnitTime =
-        | Minute of UnitTimeStrings
-        | Hour of UnitTimeStrings
+        | Minute of UnitTimeData
+        | Hour of UnitTimeData
