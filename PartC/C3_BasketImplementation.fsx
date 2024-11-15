@@ -1,13 +1,15 @@
-#load "C1_ShoppingBasket.fsx"
-#load "../PartB/B7_Order.fsx"
+#load "C3_ShoppingBasket.fsx"
+#load "../PartC/C1_Order.fsx"
+#load "C3_Menu.fsx"
 
 module BasketImplementation =
-    open C1_ShoppingBasket.ShoppingBasket
-    open B7_Order.Order
+    open C3_ShoppingBasket.ShoppingBasket
+    open C1_Order.Order
+    open C3_Menu.Menu
 
     // Transition types
 
-    type InitBasket = BasketId -> CustomerDetails -> KitchenId -> ShoppingBasket
+    type InitBasket = BasketId -> CustomerDetails -> KitchenId -> TotalPrice -> ShoppingBasket
 
     type AddToBasket = BasketItem -> ShoppingBasket -> ShoppingBasket
 
@@ -17,15 +19,18 @@ module BasketImplementation =
 
     type ExtractBasketData = ShoppingBasket -> ActiveBasketData
 
+    type CalculateTotalPrice = BasketItem list -> TotalPrice
+
     // Implementation
 
     let initBasket: InitBasket =
-        fun (basketId: BasketId) (customerDetails: CustomerDetails) (kitchenId: KitchenId) ->
+        fun (basketId: BasketId) (customerDetails: CustomerDetails) (kitchenId: KitchenId) (totalPrice: TotalPrice) ->
             let activeData: ActiveBasketData =
                 { BasketId = basketId
                   CustomerDetails = customerDetails
                   SelectedMenuItems = []
-                  KitchenId = kitchenId }
+                  KitchenId = kitchenId
+                  TotalPrice = totalPrice }
 
             EmptyBasketState activeData
 
@@ -35,6 +40,16 @@ module BasketImplementation =
             | EmptyBasketState data -> data
             | ActiveBasketState data -> data
 
+    let calculateTotalPrice: CalculateTotalPrice =
+        fun (itemList: BasketItem list) ->
+            let mutable totalPrice: float = 0
+
+            for basketItem: BasketItem in itemList do
+                let itemPrice: float = basketItem.Item.ItemPrice
+                totalPrice <- totalPrice + itemPrice
+
+            TotalPrice totalPrice
+
     let addToBasket: AddToBasket =
         fun (basketItem: BasketItem) (shoppingBasket: ShoppingBasket) ->
 
@@ -43,11 +58,14 @@ module BasketImplementation =
             let newBasketItems: BasketItem list =
                 basketItem :: activeBasketData.SelectedMenuItems
 
+            let totalPrice: TotalPrice = calculateTotalPrice newBasketItems
+
             let newBasketData: ActiveBasketData =
                 { BasketId = activeBasketData.BasketId
                   CustomerDetails = activeBasketData.CustomerDetails
                   SelectedMenuItems = newBasketItems
-                  KitchenId = activeBasketData.KitchenId }
+                  KitchenId = activeBasketData.KitchenId
+                  TotalPrice = totalPrice }
 
             ActiveBasketState newBasketData
 
