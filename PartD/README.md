@@ -1,4 +1,4 @@
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)
 
 # Part D: Building a DSL for Recipes
 
@@ -221,4 +221,4 @@ let chocolateCake: Recipe =
         thenDo "add icing" ]
 ```
 
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)

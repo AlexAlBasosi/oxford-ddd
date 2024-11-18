@@ -1,4 +1,4 @@
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)
 
 # Part E: Error Handling
 
@@ -302,4 +302,4 @@ newRobotState
 
 The functions will still take in `RobotState` and pass them to the next function, but they can now also handle different kind of errors that may occur either while assembling the pizza or putting it into the oven.
 
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)

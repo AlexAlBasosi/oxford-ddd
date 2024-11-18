@@ -1,4 +1,4 @@
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)
 
 # Part C: Designing for Pipelines
 
@@ -399,4 +399,4 @@ emptyBasket
 
 This time there will be no compilation errors because it’s now accepting and returning the correct arguments.
 
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)

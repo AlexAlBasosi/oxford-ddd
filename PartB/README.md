@@ -1,4 +1,4 @@
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)
 
 # Part B: Modelling the Domain
 
@@ -504,4 +504,4 @@ type RemoveFromBasket = BasketItem -> ActiveBasketData -> ShoppingBasket
 type Pay = ActiveBasketData -> Payment -> Order
 ```
 
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)

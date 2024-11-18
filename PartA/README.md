@@ -1,4 +1,4 @@
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)
 
 # Part A: Documenting the Domain
 
@@ -208,4 +208,4 @@ COPS -> COPS: Store for Mgmt Reports
 ![](./Diagrams/Figure4.png)
 Figure 4
 
-[Back to Main](../README.md)
+[<- Back to Main](../README.md)
