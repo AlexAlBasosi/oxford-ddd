@@ -279,7 +279,16 @@ To start off with, `assemblePizza_v2` now has two outputs, and `putInOven_v2` ac
 
 On the other hand, since `putInOven_v2` now has two outputs, and the following functions are now one-track functions that accept one input `RobotState` and return one output, `RobotState`, we can use `Result.map` to convert them two two-track input and two-track output functions, since the function following the one being called is only called when the previous function returns a success case.
 
-Putting all this together, this is what our new pipeline will now look like:
+Putting all this together, first we update the `robotStateData` object to include our new errors:
+
+```
+let robotStateData: RobotStateData =
+    { AssembleError = None
+        OvenError = None
+        KitchenError = None }
+```
+
+And now, this is what our new pipeline will now look like:
 
 ```
 newRobotState
