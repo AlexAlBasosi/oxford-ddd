@@ -8,7 +8,7 @@ Repository containing a design for building a pizza ordering service as part of 
 - [Part B: Modelling the Domain](./PartB/README.md)
 - [Part C: Designing for Pipelines](./PartC/README.md)
 - [Part D: Building a DSL for Recipes](./PartD/README.md)
-- [Part E: Error Handling]()
+- [Part E: Error Handling](./PartE/README.md)
 - [Part F: Event Sourcing]()
 - [Part G: Serialization]()
 - [Bonus Material]()
