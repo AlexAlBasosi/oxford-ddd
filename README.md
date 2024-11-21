@@ -1986,4 +1986,4 @@ Oh, did I mention we also prepared garlic bread?
 
 ![](./Bonus/Pictures/pizzas.jpg)
 
-Now, it was a rather enjoyable experience. But I must say, I definitely enjoyed the experience of eating more it than I did cooking it. Still, it was a fun little thing to try, and I'm getting a slight kick out of the thought that you're probably going to order pizza tonight! :)
+Now, it was a rather enjoyable experience. But I must say, I definitely enjoyed the experience of eating it more than I did cooking it. Still, it was a fun little thing to try, and I'm getting a slight kick out of the thought that you're probably going to order pizza tonight! :)
