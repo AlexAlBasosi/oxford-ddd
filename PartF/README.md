@@ -1,3 +1,5 @@
+[<- Back to Main](../README.md)
+
 # Part F: Event Sourcing
 
 Now, let's look at tracking inventory changes in the kitchen's stockroom.
@@ -63,3 +65,5 @@ The `ExecuteCommand` takes the changes we want to make to the current state, as 
 Finally, the `HandleCommand` is what orchestrates executing the command. It is the function that takes in the command to be executed against the current state, takes all the events from the event store and called `ApplyEvent` on each event to bring the state to the current state, and then calls the `ExecuteCommand` against the current state. It then adds the list of events output from that function back into the event store. It doesn't return anything or, in other words, `unit`.
 
 In our case, suppose we want to discard an item from inventory. We would call `HandleCommand`, passing in `DiscardFromInventory` and the `Barcode` of the item, the `StaffMember` who wants to discard the item, and the `Timestamp` at which that barcode was scanned. It would then call `ApplyEvent` on all the events in the `eventStore`, until it reaches the current state. If the item hasn't been added to inventory, it might cause an issue. Otherwise, it can be safely thrown away. It will then store the `DiscardedFromInventory` event into the `eventStore`, and not need to return anything.
+
+[<- Back to Main](../README.md)

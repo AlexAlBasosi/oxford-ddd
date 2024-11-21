@@ -1,3 +1,5 @@
+[<- Back to Main](../README.md)
+
 # Part G: Serialization
 
 In order to serialize our domain object so that they may be transmitted as JSON objects over the wire, we must first convert some of our objects to Data Transfer Objects (DTOs).
@@ -240,3 +242,5 @@ myPizza |> pizzaToDto |> serializeJson
 ```
 
 And the code compiles! We finally have our `Pizza` object that has been serialized, made easy to convert by being transformed into a DTO object, and converted to a JSON object which is now ready to be transmitted over the wire and made available on the website.
+
+[<- Back to Main](../README.md)
